@@ -409,6 +409,43 @@ def _K_valve_reducer_formula6(f_t: float, base: float, d_small: float, d_large: 
             K = base * f_t
         return K_formula_6(angle, d_small, d_large, K1=K)
 
+def K_contraction(angle: float, d_small: float, d_large: float) -> float:
+    """K for a squeeze (contraction), pick gentle-angle or wide-angle math for you.
+
+    Angle <= 45 deg uses K_formula_1, else K_formula_2 - same split those
+    two formulas already use, just so caller don't have to pick by hand.
+
+    Args:
+        angle: Full cone angle, degree.
+        d_small: Small pipe size. Any unit, long as same as d_large.
+        d_large: Big pipe size. Same unit as d_small.
+
+    Returns:
+        K number. No unit. Counted at small-pipe speed.
+    """
+    if angle <= 45:
+        return K_formula_1(angle, d_small, d_large)
+    else:
+        return K_formula_2(angle, d_small, d_large)
+
+def K_enlargement(angle: float, d_small: float, d_large: float) -> float:
+    """K for a spread (enlargement), pick gentle-angle or wide-angle math for you.
+
+    Angle <= 45 deg uses K_formula_3, else K_formula_4 - same split those
+    two formulas already use, just so caller don't have to pick by hand.
+
+    Args:
+        angle: Full cone angle, degree.
+        d_small: Small pipe size. Any unit, long as same as d_large.
+        d_large: Big pipe size. Same unit as d_small.
+
+    Returns:
+        K number. No unit. Counted at small-pipe speed.
+    """
+    if angle <= 45:
+        return K_formula_3(angle, d_small, d_large)
+    else:
+        return K_formula_4(d_small, d_large)
 
 def K_gate_valve(f_t: float, d_small: float = None, d_large: float = None, angle: float = 0, K: float = None) -> float:
     """K for gate valve, wide open.
@@ -1094,4 +1131,6 @@ def list_functions() -> None:
         summary = obj.__doc__.strip().splitlines()[0] if obj.__doc__ else "(no docstring)"
         print(f"{name}{inspect.signature(obj)} - {summary}")
 
-list_functions()
+
+if __name__ == "__main__":
+    list_functions()
