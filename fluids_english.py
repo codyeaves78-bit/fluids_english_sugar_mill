@@ -132,7 +132,7 @@ def f(eta: float = 0.00015, d: float = 1, Re: float = 10000) -> float:
             fn = fn - ((y2 * (fn - fn_1)) / (y2 - y1))
             fn_1 = a
             iteration += 1
-        print(f"friction factor converged in {iteration} iterations")
+        #print(f"friction factor converged in {iteration} iterations")
         if Re < 4000:
             print(f"WARNING!!! Re is > 2000 and < 4000, this is the transition zone, calculation assumes turbulent flow")
 
