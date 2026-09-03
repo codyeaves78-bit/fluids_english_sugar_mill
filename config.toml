@@ -1,0 +1,13 @@
+# Project-local Streamlit config.
+#
+# Pins this app to its own port so `streamlit run pipe_flow_app.py` never
+# collides with other Streamlit apps you may already have running on this
+# machine (Streamlit's default port, 8501, is a common collision point).
+# This file only applies when Streamlit is launched from this directory -
+# it has no effect on other projects.
+
+[server]
+port = 8765
+
+[browser]
+gatherUsageStats = false
