@@ -7,6 +7,8 @@ flow behavior index (n) formulas and pipe head-loss equation, rather than
 the Newtonian/Colebrook approach used on the Pipe Flow page.
 """
 
+from pathlib import Path
+
 import streamlit as st
 
 from SugarStreamFluids import SugarStreamFluids
@@ -64,7 +66,7 @@ stream = SugarStreamFluids(brix=brix, purity=purity, flow_lb_per_hr=flow_lb_per_
                             grade=grade)
 
 st.subheader("Stream Properties")
-st.image(r'C:\Python Projects\Fluids\Screenshot 2026-09-03 093527.png')
+st.image(str(Path(__file__).resolve().parent.parent / "Screenshot 2026-09-03 093527.png"))
 st.markdown(f"Image Source 'https://researchspace.ukzn.ac.za/server/api/core/bitstreams/8fd096ce-e93b-49da-b0ff-41338c90fd22/content'")
 p1, p2, p3, p4 = st.columns(4)
 p1.metric("Specific gravity", f"{stream.specific_gravity:.4f}")
